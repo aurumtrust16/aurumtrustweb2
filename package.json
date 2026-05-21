@@ -4,12 +4,11 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "pnpm run build && gh-pages -d dist"
+  "dev": "vite",
+  "build": "vite build",
+  "deploy": "npm run build && gh-pages -d dist"
   },
-  "homepage": "https://YOUR-USERNAME.github.io/repo-name",
+  "homepage": "https://aurumtrust16.github.io/aurumtrustweb2",
   "dependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
