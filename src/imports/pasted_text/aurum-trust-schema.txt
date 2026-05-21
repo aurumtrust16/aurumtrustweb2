@@ -1,0 +1,386 @@
+ได้เลย ผมจัด **SQL Schema + API Design แบบ Production-ready** สำหรับ
+
+# 🟡 **AURUM TRUST – Pawn & Finance System**
+
+โฟกัส:
+
+* รองรับ **Web + LINE + Admin**
+* ออกแบบให้ **scale ได้ + ต่อ AI/SEO ได้ในอนาคต**
+
+---
+
+# 🧱 1) Database Design (PostgreSQL – Normalized)
+
+## 🧑‍💼 1.1 customers
+
+```sql
+CREATE TABLE customers (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    full_name VARCHAR(255),
+    phone VARCHAR(20) UNIQUE,
+    line_user_id VARCHAR(100),
+    email VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## 📦 1.2 assets (ทรัพย์ที่นำมาจำนำ)
+
+```sql
+CREATE TABLE assets (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    customer_id UUID REFERENCES customers(id),
+    asset_type VARCHAR(50), -- gold, phone, watch, brandname
+    title VARCHAR(255),
+    description TEXT,
+    brand VARCHAR(100),
+    model VARCHAR(100),
+    weight DECIMAL(10,2), -- for gold
+    condition VARCHAR(50), -- new, good, fair
+    estimated_price DECIMAL(12,2),
+    actual_price DECIMAL(12,2),
+    status VARCHAR(50) DEFAULT 'pending', -- pending, active, redeemed, expired
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## 💰 1.3 pawn_transactions
+
+```sql
+CREATE TABLE pawn_transactions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    asset_id UUID REFERENCES assets(id),
+    customer_id UUID REFERENCES customers(id),
+    pawn_amount DECIMAL(12,2),
+    interest_rate DECIMAL(5,2), -- %
+    start_date DATE,
+    due_date DATE,
+    status VARCHAR(50) DEFAULT 'active', -- active, redeemed, defaulted
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## 💵 1.4 payments (ดอกเบี้ย / ไถ่ถอน)
+
+```sql
+CREATE TABLE payments (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    transaction_id UUID REFERENCES pawn_transactions(id),
+    amount DECIMAL(12,2),
+    payment_type VARCHAR(50), -- interest, redemption
+    paid_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## 🧾 1.5 inquiries (SEO lead + estimator)
+
+```sql
+CREATE TABLE inquiries (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    asset_type VARCHAR(50),
+    detail TEXT,
+    estimated_price DECIMAL(12,2),
+    customer_name VARCHAR(255),
+    phone VARCHAR(20),
+    line_sent BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## 🖼️ 1.6 asset_images
+
+```sql
+CREATE TABLE asset_images (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    asset_id UUID REFERENCES assets(id),
+    image_url TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## 🔐 1.7 users (admin/staff)
+
+```sql
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    username VARCHAR(100) UNIQUE,
+    password_hash TEXT,
+    role VARCHAR(50), -- admin, staff
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+# ⚡ 2) Indexing Strategy (Performance)
+
+```sql
+CREATE INDEX idx_assets_customer_id ON assets(customer_id);
+CREATE INDEX idx_assets_status ON assets(status);
+CREATE INDEX idx_transactions_due_date ON pawn_transactions(due_date);
+CREATE INDEX idx_inquiries_created_at ON inquiries(created_at);
+```
+
+---
+
+# 🌐 3) API Design (RESTful – Production Ready)
+
+## 🔐 Auth
+
+### POST /auth/login
+
+```json
+Request:
+{
+  "username": "admin",
+  "password": "123456"
+}
+
+Response:
+{
+  "access_token": "jwt_token"
+}
+```
+
+---
+
+# 🧑‍💼 3.1 Customer APIs
+
+### POST /customers
+
+```json
+{
+  "full_name": "Somchai",
+  "phone": "0812345678",
+  "line_user_id": "xxx"
+}
+```
+
+---
+
+### GET /customers/{id}
+
+---
+
+# 📦 3.2 Asset APIs
+
+### POST /assets
+
+```json
+{
+  "customer_id": "uuid",
+  "asset_type": "gold",
+  "title": "ทองคำ 1 บาท",
+  "weight": 15.2,
+  "condition": "good"
+}
+```
+
+---
+
+### GET /assets?status=active
+
+---
+
+### POST /assets/{id}/images
+
+(upload image → return S3 URL)
+
+---
+
+# 💰 3.3 Pawn Transaction APIs
+
+### POST /pawn-transactions
+
+```json
+{
+  "asset_id": "uuid",
+  "customer_id": "uuid",
+  "pawn_amount": 25000,
+  "interest_rate": 1.25,
+  "start_date": "2026-05-01",
+  "due_date": "2026-06-01"
+}
+```
+
+---
+
+### GET /pawn-transactions?status=active
+
+---
+
+### POST /pawn-transactions/{id}/redeem
+
+```json
+{
+  "amount": 26000
+}
+```
+
+---
+
+# 💵 3.4 Payment APIs
+
+### POST /payments
+
+```json
+{
+  "transaction_id": "uuid",
+  "amount": 500,
+  "payment_type": "interest"
+}
+```
+
+---
+
+# 📲 3.5 Inquiry / Estimator APIs (SEO Funnel)
+
+### POST /estimate
+
+👉 **Public API (สำคัญมาก)**
+
+```json
+{
+  "asset_type": "iphone",
+  "model": "iPhone 13",
+  "condition": "good"
+}
+```
+
+### Response
+
+```json
+{
+  "estimated_price_range": {
+    "min": 8000,
+    "max": 12000
+  }
+}
+```
+
+---
+
+### POST /inquiries
+
+```json
+{
+  "asset_type": "gold",
+  "detail": "ทอง 1 บาท",
+  "customer_name": "Som",
+  "phone": "08xxxxxxx"
+}
+```
+
+---
+
+# 🤖 4) Business Logic Layer (Important)
+
+## 💰 Price Estimation Logic
+
+```python
+def estimate_price(asset_type, condition, weight=None):
+    base_price = {
+        "gold": 30000,
+        "iphone": 10000
+    }
+
+    condition_factor = {
+        "new": 1.0,
+        "good": 0.8,
+        "fair": 0.6
+    }
+
+    return base_price[asset_type] * condition_factor[condition]
+```
+
+👉 ต่ออนาคต:
+
+* ดึงราคาทอง real-time
+* ML model
+
+---
+
+# 🔔 5) Automation / Cron Jobs
+
+## ⏰ แจ้งเตือนครบกำหนด
+
+```sql
+SELECT * FROM pawn_transactions
+WHERE due_date = CURRENT_DATE + INTERVAL '1 day';
+```
+
+👉 Trigger:
+
+* ส่ง LINE
+* SMS
+
+---
+
+# 🔐 6) Security Design
+
+* JWT Authentication
+* Rate limit (API /estimate)
+* Encrypt phone number (optional)
+* Role-based access (admin/staff)
+
+---
+
+# 🚀 7) Deployment Stack
+
+| Layer    | Tech             |
+| -------- | ---------------- |
+| Frontend | Next.js          |
+| Backend  | Node.js (NestJS) |
+| DB       | PostgreSQL       |
+| Storage  | AWS S3           |
+| Infra    | Docker + AWS     |
+
+---
+
+# 📊 8) Future Extensions
+
+* AI Image valuation (upload photo → estimate)
+* Dynamic interest calculation
+* Customer credit scoring
+
+---
+
+# ✅ สรุป (Architecture Thinking)
+
+## Core Flow:
+
+```text
+SEO → /estimate → /inquiries → LINE → Store → pawn_transactions
+```
+
+## Design Principles:
+
+* Simple → Fast → Convert
+* Data structured → scale ได้
+* API-first → รองรับ mobile / LINE / future apps
+
+---
+
+# 👉 ถัดไป (ผมช่วยคุณต่อได้)
+
+ถ้าคุณจะ build จริง:
+
+* ✔ ER Diagram (visual)
+* ✔ Postman collection
+* ✔ Next.js frontend starter
+* ✔ Admin dashboard UI
+
+บอกผมได้เลยว่าอยากเริ่ม “เขียนระบบจริง” หรือ “ออกแบบ UI ก่อน” 👍
