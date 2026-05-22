@@ -192,7 +192,6 @@ base: '/repo-name/'
 AURUM TRUST
 - Phone: 082-717-2250
 - Email: aurumtrust16@gmail.com
-- Address: 123 ถนนพระราม 3 แขวงช่องนนทรี เขตยานนาวา กรุงเทพฯ 10120
 
 ## 📜 License
 
