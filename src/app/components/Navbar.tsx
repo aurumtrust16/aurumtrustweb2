@@ -34,8 +34,8 @@ export function Navbar() {
               <div className="absolute top-full left-0 mt-2 w-48 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all" style={{
                 backgroundColor: 'var(--aurum-navy)'
               }}>
-                <Link to="/services/phone" className="block px-4 py-3 text-white hover:bg-white/10 transition-colors">รับจำนำมือถือ</Link>
-                <Link to="/services/luxury" className="block px-4 py-3 text-white hover:bg-white/10 transition-colors">รับจำนำแบรนด์เนม</Link>
+                <Link to="/services/phone" className="block px-4 py-3 text-white hover:bg-white/10 transition-colors">รับซื้อมือถือ</Link>
+                <Link to="/services/luxury" className="block px-4 py-3 text-white hover:bg-white/10 transition-colors">รับซื้อนาฬิกาและแบรนด์เนม</Link>
               </div>
             </div>
             <a href="/#estimate" className="text-white hover:text-[var(--aurum-gold)] transition-colors">ประเมินราคา</a>
@@ -72,8 +72,8 @@ export function Navbar() {
               </button>
               {isServicesOpen && (
                 <div className="pl-4 mt-2 space-y-2">
-                  <Link to="/services/phone" className="block text-gray-300 hover:text-[var(--aurum-gold)] py-1">รับจำนำมือถือ</Link>
-                  <Link to="/services/luxury" className="block text-gray-300 hover:text-[var(--aurum-gold)] py-1">รับจำนำแบรนด์เนม</Link>
+                  <Link to="/services/phone" className="block text-gray-300 hover:text-[var(--aurum-gold)] py-1">รับซื้อมือถือ</Link>
+                  <Link to="/services/luxury" className="block text-gray-300 hover:text-[var(--aurum-gold)] py-1">รับซื้อนาฬิกาและแบรนด์เนม</Link>
                 </div>
               )}
             </div>

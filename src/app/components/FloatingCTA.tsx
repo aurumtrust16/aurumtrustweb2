@@ -1,18 +1,22 @@
 import { MessageCircle, Phone, Calculator } from 'lucide-react';
 import { useState } from 'react';
+import { trackContactClick, trackEvent } from '../lib/analytics';
 
 export function FloatingCTA() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLineContact = () => {
+    trackContactClick('line', 'floating_cta');
     window.open('https://lin.ee/RF3sNle', '_blank');
   };
 
   const handlePhoneCall = () => {
+    trackContactClick('phone', 'floating_cta');
     window.location.href = 'tel:0827172250';
   };
 
   const scrollToEstimate = () => {
+    trackEvent('appraisal_cta_click', { placement: 'floating_cta' });
     document.getElementById('estimate')?.scrollIntoView({ behavior: 'smooth' });
     setIsOpen(false);
   };

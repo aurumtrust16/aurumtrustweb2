@@ -105,8 +105,12 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-gray-400 mb-4">
-              ร้านรับจำนำมาตรฐานพรีเมียม ให้ราคาดี โปร่งใส ไว้วางใจได้
+              บริการรับซื้อ-ขายมือถือ นาฬิกา และสินค้าแบรนด์เนม ประเมินราคาก่อนตัดสินใจขาย
             </p>
+            <div className="mb-4 space-y-1 text-xs leading-relaxed text-gray-400">
+              <p>เลขที่ใบทะเบียนพาณิชย์: 1100369000051</p>
+              <p>เลขที่ใบอนุญาตค้าของเก่า: 0001144</p>
+            </div>
             <div className="flex gap-3">
               <a href="https://www.facebook.com/profile.php?id=61589267054204" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border flex items-center justify-center transition-all hover:bg-white/10" style={{ borderColor: 'var(--aurum-gold)' }}>
                 <Facebook size={18} style={{ color: 'var(--aurum-gold)' }} />
@@ -121,9 +125,9 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4 text-white">บริการของเรา</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link to="/services/phone" className="hover:text-[var(--aurum-gold)] transition-colors">รับจำนำมือถือ</Link></li>
-              <li><Link to="/services/luxury" className="hover:text-[var(--aurum-gold)] transition-colors">รับจำนำนาฬิกา</Link></li>
-              <li><Link to="/services/luxury" className="hover:text-[var(--aurum-gold)] transition-colors">รับจำนำแบรนด์เนม</Link></li>
+              <li><Link to="/services/phone" className="hover:text-[var(--aurum-gold)] transition-colors">รับซื้อมือถือ</Link></li>
+              <li><Link to="/services/luxury" className="hover:text-[var(--aurum-gold)] transition-colors">รับซื้อนาฬิกา</Link></li>
+              <li><Link to="/services/luxury" className="hover:text-[var(--aurum-gold)] transition-colors">รับซื้อแบรนด์เนม</Link></li>
               <li><a href="/#estimate" className="hover:text-[var(--aurum-gold)] transition-colors">ประเมินราคาออนไลน์</a></li>
             </ul>
           </div>

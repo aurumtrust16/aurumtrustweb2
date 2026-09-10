@@ -1,7 +1,9 @@
 import { ArrowRight, Shield, TrendingUp, Clock } from 'lucide-react';
+import { trackEvent } from '../lib/analytics';
 
 export function Hero() {
   const scrollToEstimate = () => {
+    trackEvent('appraisal_cta_click', { placement: 'hero' });
     document.getElementById('estimate')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -26,7 +28,7 @@ export function Hero() {
               backgroundColor: 'rgba(212, 175, 55, 0.1)'
             }}>
               <span className="text-sm" style={{ color: 'var(--aurum-gold)' }}>
-                มาตรฐานสูง • โปร่งใส • ไว้ใจได้
+                รับซื้อ-ขาย • ประเมินฟรี • ตกลงก่อนขาย
               </span>
             </div>
 
@@ -35,14 +37,14 @@ export function Hero() {
               color: 'white',
               fontWeight: '700'
             }}>
-              รับจำนำ<br />
-              <span style={{ color: 'var(--aurum-gold)' }}>ให้ราคาดี</span><br />
-              โปร่งใส
+              ขายสินค้ามีค่า<br />
+              <span style={{ color: 'var(--aurum-gold)' }}>รับเงินไว</span><br />
+              ราคาโปร่งใส
             </h1>
 
             <p className="text-lg text-gray-300 max-w-xl">
-              ประเมินราคามือถือ นาฬิกา แบรนด์เนมของคุณได้ทันที<br />
-              ด้วยระบบออนไลน์ที่แม่นยำ รับเงินสดไว บริการมืออาชีพ
+              รับซื้อ-ขายมือถือ นาฬิกา และสินค้าแบรนด์เนม<br />
+              ส่งข้อมูลเพื่อประเมินเบื้องต้นได้ฟรี ตัดสินใจขายได้โดยไม่มีข้อผูกมัด
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -71,22 +73,22 @@ export function Hero() {
                 <div className="flex justify-center mb-2" style={{ color: 'var(--aurum-gold)' }}>
                   <Shield size={24} />
                 </div>
-                <p className="font-bold text-white text-2xl">100%</p>
-                <p className="text-sm text-gray-400">ปลอดภัย</p>
+                <p className="font-bold text-white text-xl">ตรวจสอบ</p>
+                <p className="text-sm text-gray-400">ต่อหน้าคุณ</p>
               </div>
               <div className="text-center">
                 <div className="flex justify-center mb-2" style={{ color: 'var(--aurum-gold)' }}>
                   <TrendingUp size={24} />
                 </div>
-                <p className="font-bold text-white text-2xl">15k+</p>
-                <p className="text-sm text-gray-400">ลูกค้าไว้วางใจ</p>
+                <p className="font-bold text-white text-xl">ตกลงก่อน</p>
+                <p className="text-sm text-gray-400">ไม่มีข้อผูกมัด</p>
               </div>
               <div className="text-center">
                 <div className="flex justify-center mb-2" style={{ color: 'var(--aurum-gold)' }}>
                   <Clock size={24} />
                 </div>
-                <p className="font-bold text-white text-2xl">15 นาที</p>
-                <p className="text-sm text-gray-400">รับเงินไว</p>
+                <p className="font-bold text-white text-xl">ชำระไว</p>
+                <p className="text-sm text-gray-400">เมื่อขายสำเร็จ</p>
               </div>
             </div>
           </div>
@@ -104,7 +106,7 @@ export function Hero() {
 
               <div className="space-y-6">
                 <div className="text-center py-8 border-b" style={{ borderColor: 'rgba(212, 175, 55, 0.2)' }}>
-                  <p className="text-gray-400 mb-2">ช่วงราคาจำนำ</p>
+                  <p className="text-gray-400 mb-2">ช่วงราคารับซื้อโดยประมาณ</p>
                   <p className="text-4xl font-bold" style={{ color: 'var(--aurum-gold)' }}>
                     ฿5k - ฿200k
                   </p>

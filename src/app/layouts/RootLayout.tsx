@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { FloatingCTA } from '../components/FloatingCTA';
+import { AnalyticsTracker } from '../components/AnalyticsTracker';
 
 function ScrollToHash() {
   const { hash, pathname } = useLocation();
@@ -30,6 +31,7 @@ function ScrollToHash() {
 export function RootLayout() {
   return (
     <div className="min-h-screen">
+      <AnalyticsTracker />
       <ScrollToHash />
       <Navbar />
       <Outlet />

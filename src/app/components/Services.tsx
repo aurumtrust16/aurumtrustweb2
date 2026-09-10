@@ -1,19 +1,19 @@
-import { Gem, Smartphone, Watch, ShoppingBag, TrendingUp, Shield, Clock, ArrowRight } from 'lucide-react';
+import { Smartphone, Watch, ShoppingBag, TrendingUp, Shield, Clock, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
 
 export function Services() {
   const services = [
     {
       icon: Smartphone,
-      title: 'รับจำนำมือถือ',
-      description: 'iPhone, Samsung ทุกรุ่น ให้ราคาสูงกว่าที่อื่น',
+      title: 'รับซื้อมือถือ',
+      description: 'iPhone, Samsung และมือถือรุ่นยอดนิยม ประเมินตามรุ่นและสภาพจริง',
       range: '฿5,000 - ฿35,000',
       features: ['iPhone ราคาดี', 'Android ทุกยี่ห้อ', 'ตรวจสอบสภาพฟรี'],
       link: '/services/phone'
     },
     {
       icon: Watch,
-      title: 'รับจำนำนาฬิกา',
+      title: 'รับซื้อนาฬิกา',
       description: 'Rolex, Omega, TAG Heuer และแบรนด์ชั้นนำ มีผู้เชี่ยวชาญตรวจสอบ',
       range: '฿10,000 - ฿200,000',
       features: ['ตรวจสอบความแท้', 'ประเมินโดยผู้เชี่ยวชาญ', 'รับแบรนด์ดัง'],
@@ -21,7 +21,7 @@ export function Services() {
     },
     {
       icon: ShoppingBag,
-      title: 'รับจำนำแบรนด์เนม',
+      title: 'รับซื้อแบรนด์เนม',
       description: 'กระเป๋า, เครื่องประดับ, แฟชั่นไอเท็ม จาก Chanel, LV, Hermès',
       range: '฿15,000 - ฿150,000',
       features: ['รับของแท้เท่านั้น', 'ตรวจสอบอย่างละเอียด', 'ราคายุติธรรม'],
@@ -32,18 +32,18 @@ export function Services() {
   const benefits = [
     {
       icon: TrendingUp,
-      title: 'ราคาสูงสุด',
-      description: 'ประเมินราคายุติธรรม ไม่กดราคา'
+      title: 'ราคาอ้างอิงตลาด',
+      description: 'ประเมินตามรุ่น สภาพ อุปกรณ์ และความต้องการในตลาด'
     },
     {
       icon: Shield,
-      title: 'ปลอดภัย 100%',
-      description: 'มีใบอนุญาต ทรัพย์สินมีประกันภัย'
+      title: 'ขั้นตอนชัดเจน',
+      description: 'แจ้งราคาก่อนตัดสินใจและตรวจสอบเอกสารการขาย'
     },
     {
       icon: Clock,
-      title: 'รวดเร็ว 15 นาที',
-      description: 'ประเมิน อนุมัติ รับเงินทันที'
+      title: 'ประเมินได้รวดเร็ว',
+      description: 'ส่งรูปและรายละเอียดเพื่อรับราคาเบื้องต้น'
     }
   ];
 
@@ -58,7 +58,7 @@ export function Services() {
             บริการของเรา
           </h2>
           <p className="text-lg text-gray-300">
-            รับจำนำทรัพย์สินหลากหลายประเภท ด้วยมาตรฐานระดับพรีเมียม
+            รับซื้อ-ขายสินค้ามีค่า ประเมินตามข้อมูลและสภาพจริง
           </p>
         </div>
 

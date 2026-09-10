@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Calculator, TrendingUp, MessageCircle } from 'lucide-react';
+import { trackContactClick, trackEvent } from '../lib/analytics';
 
 type AssetType = 'gold' | 'phone' | 'watch' | 'brandname';
 type Condition = 'new' | 'good' | 'fair';
@@ -10,6 +11,7 @@ interface PriceRange {
 }
 
 export function PriceEstimator() {
+  const hasStarted = useRef(false);
   const [assetType, setAssetType] = useState<AssetType | ''>('');
   const [condition, setCondition] = useState<Condition>('good');
   const [details, setDetails] = useState('');
@@ -42,6 +44,20 @@ export function PriceEstimator() {
 
     setEstimatedPrice({ min, max });
     setShowResult(true);
+    trackEvent('estimate_completed', {
+      asset_type: assetType,
+      condition,
+      details_provided: details.trim().length > 0,
+    });
+  };
+
+  const selectAssetType = (value: AssetType) => {
+    setAssetType(value);
+    if (!hasStarted.current) {
+      hasStarted.current = true;
+      trackEvent('start_appraisal', { placement: 'price_estimator' });
+    }
+    trackEvent('select_asset_type', { asset_type: value });
   };
 
   const handleReset = () => {
@@ -50,9 +66,12 @@ export function PriceEstimator() {
     setDetails('');
     setEstimatedPrice(null);
     setShowResult(false);
+    hasStarted.current = false;
+    trackEvent('estimate_reset', { placement: 'price_estimator' });
   };
 
   const handleLineContact = () => {
+    trackContactClick('line', 'price_estimator_result', { asset_type: assetType });
     window.open('https://lin.ee/RF3sNle', '_blank');
   };
 
@@ -89,7 +108,7 @@ export function PriceEstimator() {
                   {assetTypes.map((type) => (
                     <button
                       key={type.id}
-                      onClick={() => setAssetType(type.id as AssetType)}
+                      onClick={() => selectAssetType(type.id as AssetType)}
                       className="p-4 rounded-lg border-2 transition-all hover:shadow-md"
                       style={{
                         borderColor: assetType === type.id ? 'var(--aurum-gold)' : '#e5e7eb',

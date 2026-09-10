@@ -6,45 +6,25 @@ export default function App() {
   return (
     <HelmetProvider>
       <Helmet>
-        {/* Google Tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18173464456"></script>
-        <script>
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-18173464456');
-          `}
-        </script>
-
+        <title>AURUM TRUST รับซื้อสินค้าแบรนด์เนม มือถือ และนาฬิกา</title>
+        <meta name="description" content="รับซื้อ-ขาย iPhone มือถือ นาฬิกา และกระเป๋าแบรนด์เนม ประเมินราคาฟรี ตรวจสอบสินค้าอย่างโปร่งใส ตกลงราคาก่อนขาย" />
+        <meta name="keywords" content="รับซื้อ iPhone, รับซื้อมือถือ, รับซื้อนาฬิกา, รับซื้อ Rolex, รับซื้อกระเป๋าแบรนด์เนม, ขายของมือสอง" />
+        <link rel="canonical" href="https://aurumtrustco.com/" />
         {/* Schema.org JSON-LD */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "PawnShop",
+            "@type": "Store",
             "name": "AURUM TRUST",
-            "description": "ร้านรับจำนำมาตรฐานพรีเมียม รับจำนำมือถือ นาฬิกา แบรนด์เนม ให้ราคาดี โปร่งใส",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "123 ถนนพระราม 3",
-              "addressLocality": "ช่องนนทรี",
-              "addressRegion": "กรุงเทพมหานคร",
-              "postalCode": "10120",
-              "addressCountry": "TH"
-            },
+            "description": "บริการรับซื้อ-ขายมือถือ นาฬิกา และสินค้าแบรนด์เนม พร้อมประเมินราคาก่อนตัดสินใจขาย",
             "telephone": "+66-82-717-2250",
             "email": "aurumtrust16@gmail.com",
             "url": "https://aurumtrustco.com",
-            "priceRange": "฿฿฿",
+            "priceRange": "฿฿",
             "openingHours": [
               "Mo-Fr 09:00-18:00",
               "Sa-Su 10:00-17:00"
-            ],
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "1250"
-            }
+            ]
           })}
         </script>
       </Helmet>

@@ -143,6 +143,23 @@ src/
 
 ## 🔧 Configuration
 
+### Website tracking
+
+Copy `.env.example` to `.env.local` and set the IDs supplied by Google. The
+site loads the existing Google Ads tag by default and emits `page_view`,
+`appraisal_cta_click`, `start_appraisal`, `select_asset_type`,
+`estimate_completed`, `estimate_reset`, and LINE/phone/email/map contact-click
+events.
+
+The tracking layer captures first/last-touch UTM parameters plus GCLID, GBRAID,
+WBRAID, FBCLID, and TTCLID. It never sends the free-text estimator details to
+advertising platforms. LINE and phone click conversions are optional and
+should remain secondary until CRM-qualified lead imports are live.
+
+Use Tag Assistant and the browser `dataLayer` to verify every event in staging
+before deploying. A successful build alone does not prove that a Google Ads
+conversion label is configured correctly.
+
 ### Base Path (สำคัญสำหรับ GitHub Pages!)
 
 ถ้า deploy บน GitHub Pages จะต้องตั้ง base path เป็นชื่อ repository:

@@ -17,14 +17,14 @@ export function HowItWorks() {
     {
       icon: Banknote,
       number: '03',
-      title: 'รับเงินสดทันที',
-      description: 'ตกลงราคาและเงื่อนไข รับเงินสดภายใน 15 นาที พร้อมใบสัญญา'
+      title: 'ยืนยันราคาขาย',
+      description: 'พิจารณาราคาที่เสนอและตัดสินใจได้อย่างอิสระก่อนส่งมอบสินค้า'
     },
     {
       icon: CheckCircle,
       number: '04',
-      title: 'ไถ่คืนได้ตลอด',
-      description: 'ชำระดอกเบี้ยและเงินต้นเมื่อไหร่ก็ได้ รับทรัพย์สินคืนทันที'
+      title: 'รับเงินและหลักฐาน',
+      description: 'เมื่อยืนยันขาย รับเงินพร้อมหลักฐานการซื้อขายที่ระบุรายละเอียดสินค้า'
     }
   ];
 
@@ -34,10 +34,10 @@ export function HowItWorks() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4" style={{ color: 'var(--aurum-navy)' }}>
-            ขั้นตอนการจำนำ
+            ขั้นตอนการขายสินค้า
           </h2>
           <p className="text-lg text-gray-600">
-            เพียง 4 ขั้นตอนง่ายๆ รับเงินสดไว ภายใน 15 นาที
+            ประเมินฟรี รู้ราคาก่อน และไม่มีข้อผูกมัดจนกว่าจะตกลงขาย
           </p>
         </div>
 
@@ -95,14 +95,14 @@ export function HowItWorks() {
                 ทำไมต้อง AURUM TRUST?
               </h3>
               <p className="text-gray-300 mb-6">
-                เราไม่ใช่แค่ร้านรับจำนำทั่วไป เราคือพันธมิตรทางการเงินที่คุณไว้วางใจได้
+                เราเน้นการประเมินสินค้าที่ตรวจสอบได้และอธิบายปัจจัยด้านราคาให้เข้าใจง่าย
               </p>
               <div className="space-y-4">
                 {[
-                  'ประเมินราคายุติธรรม ไม่กดราคา',
-                  'มีใบอนุญาตถูกต้อง ตามกฎหมาย',
-                  'ทรัพย์สินมีประกันภัย 100%',
-                  'ดอกเบี้ยต่ำ โปร่งใส ไม่มีค่าธรรมเนียมแอบแฝง',
+                  'ประเมินจากรุ่น สภาพ อุปกรณ์ และราคาตลาด',
+                  'แจ้งราคาก่อนตัดสินใจ ไม่มีข้อผูกมัด',
+                  'ตรวจสอบสินค้าและเอกสารต่อหน้าผู้ขาย',
+                  'เงื่อนไขและหลักฐานการซื้อขายระบุไว้อย่างชัดเจน',
                   'บริการโดยผู้เชี่ยวชาญมากประสบการณ์',
                   'ความเป็นส่วนตัว รักษาข้อมูลลูกค้าอย่างเคร่งครัด'
                 ].map((item, i) => (
@@ -123,9 +123,9 @@ export function HowItWorks() {
                 borderColor: 'rgba(212, 175, 55, 0.3)'
               }}>
                 <p className="text-5xl font-bold mb-2" style={{ color: 'var(--aurum-gold)' }}>
-                  10+
+                  ฟรี
                 </p>
-                <p className="text-white">ปีประสบการณ์</p>
+                <p className="text-white">ค่าประเมินเบื้องต้น</p>
               </div>
 
               <div className="p-6 rounded-xl backdrop-blur-sm border" style={{
@@ -133,9 +133,9 @@ export function HowItWorks() {
                 borderColor: 'rgba(212, 175, 55, 0.3)'
               }}>
                 <p className="text-5xl font-bold mb-2" style={{ color: 'var(--aurum-gold)' }}>
-                  15k+
+                  ชัดเจน
                 </p>
-                <p className="text-white">ลูกค้าที่ไว้วางใจ</p>
+                <p className="text-white">ตกลงราคาก่อนขาย</p>
               </div>
 
               <div className="p-6 rounded-xl backdrop-blur-sm border" style={{
@@ -143,9 +143,9 @@ export function HowItWorks() {
                 borderColor: 'rgba(212, 175, 55, 0.3)'
               }}>
                 <p className="text-5xl font-bold mb-2" style={{ color: 'var(--aurum-gold)' }}>
-                  4.9/5
+                  ส่วนตัว
                 </p>
-                <p className="text-white">คะแนนความพึงพอใจ</p>
+                <p className="text-white">ดูแลข้อมูลผู้ขาย</p>
               </div>
             </div>
           </div>
