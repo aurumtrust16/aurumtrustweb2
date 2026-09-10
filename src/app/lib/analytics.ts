@@ -1,5 +1,6 @@
 const DEFAULT_GOOGLE_TAG_ID = 'AW-18173464456';
 const DEFAULT_GOOGLE_ADS_LINE_SEND_TO = 'AW-18173464456/lrZACJj7j_EcEIif5NlD';
+const DEFAULT_GOOGLE_ADS_FACEBOOK_SEND_TO = 'AW-18173464456/wBQWCIHW__IcEIif5NlD';
 const DEFAULT_GOOGLE_ADS_PHONE_SEND_TO = 'AW-18173464456/7OAGCJv7j_EcEIif5NlD';
 
 const ATTRIBUTION_KEYS = [
@@ -145,13 +146,15 @@ export function trackPageView(path: string) {
 }
 
 export function trackContactClick(
-  channel: 'line' | 'phone' | 'email' | 'map',
+  channel: 'line' | 'facebook' | 'phone' | 'email' | 'map',
   placement: string,
   params: AnalyticsParams = {},
 ) {
   trackEvent(`${channel}_contact_click`, { placement, ...params });
   const sendTo = channel === 'line'
     ? import.meta.env.VITE_GOOGLE_ADS_LINE_SEND_TO?.trim() || DEFAULT_GOOGLE_ADS_LINE_SEND_TO
+    : channel === 'facebook'
+      ? import.meta.env.VITE_GOOGLE_ADS_FACEBOOK_SEND_TO?.trim() || DEFAULT_GOOGLE_ADS_FACEBOOK_SEND_TO
     : channel === 'phone'
       ? import.meta.env.VITE_GOOGLE_ADS_PHONE_SEND_TO?.trim() || DEFAULT_GOOGLE_ADS_PHONE_SEND_TO
       : undefined;
