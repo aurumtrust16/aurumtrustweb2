@@ -29,14 +29,17 @@ function ScrollToHash() {
 }
 
 export function RootLayout() {
+  const { search } = useLocation();
+  const isAdLanding = new URLSearchParams(search).get('lp') === 'pawn-bkk-spk';
+
   return (
     <div className="min-h-screen">
       <AnalyticsTracker />
       <ScrollToHash />
-      <Navbar />
+      {!isAdLanding && <Navbar />}
       <Outlet />
-      <Footer />
-      <FloatingCTA />
+      {!isAdLanding && <Footer />}
+      {!isAdLanding && <FloatingCTA />}
     </div>
   );
 }

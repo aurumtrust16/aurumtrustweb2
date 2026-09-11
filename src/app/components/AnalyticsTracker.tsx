@@ -29,7 +29,7 @@ export function AnalyticsTracker() {
       if (href.startsWith('tel:')) trackContactClick('phone', placement);
       else if (href.startsWith('mailto:')) trackContactClick('email', placement);
       else if (href.includes('lin.ee/')) trackContactClick('line', placement);
-      else if (href.includes('facebook.com/profile.php?id=61589267054204')) {
+      else if (href.includes('facebook.com/profile.php?id=61589267054204') || href.includes('m.me/61589267054204')) {
         trackContactClick('facebook', placement);
       }
       else if (href.includes('maps.app.goo.gl') || href.includes('google.com/maps')) {
