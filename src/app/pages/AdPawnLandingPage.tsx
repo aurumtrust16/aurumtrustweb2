@@ -98,6 +98,61 @@ export function AdPawnLandingPage() {
 
       <section className="bg-white px-5 py-14 text-slate-900 sm:px-8">
         <div className="mx-auto max-w-5xl">
+          <section
+            aria-labelledby="pawn-terms-heading"
+            className="mb-14 overflow-hidden rounded-3xl border-2 border-amber-300 bg-amber-50 shadow-lg"
+          >
+            <div className="bg-slate-950 px-6 py-5 text-white sm:px-8">
+              <p className="text-sm font-semibold text-amber-300">ข้อมูลที่ต้องทราบก่อนตัดสินใจ</p>
+              <h2 id="pawn-terms-heading" className="mt-1 text-2xl font-bold">
+                ระยะเวลา อัตราดอกเบี้ย และตัวอย่างค่าใช้จ่าย
+              </h2>
+            </div>
+            <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-2">
+              <div>
+                <h3 className="text-lg font-bold text-slate-950">เงื่อนไขบริการ</h3>
+                <dl className="mt-4 space-y-4 text-base leading-7 text-slate-700">
+                  <div>
+                    <dt className="font-semibold text-slate-950">ระยะเวลาขั้นต่ำ–สูงสุด</dt>
+                    <dd>61–150 วัน</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-950">อัตราดอกเบี้ย</dt>
+                    <dd>เงินต้นไม่เกิน 2,000 บาท: 2% ต่อเดือน</dd>
+                    <dd>เงินต้นส่วนที่เกิน 2,000 บาท: 1.25% ต่อเดือน</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-950">APR สูงสุด</dt>
+                    <dd>ไม่เกิน 24% ต่อปี กรณีวงเงินไม่เกิน 2,000 บาท</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-950">ค่าธรรมเนียมอื่น</dt>
+                    <dd>ไม่มีค่าบริการหรือค่าใช้จ่ายอื่นนอกเหนือจากดอกเบี้ยข้างต้น</dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div className="rounded-2xl bg-white p-5 ring-1 ring-amber-200 sm:p-6">
+                <h3 className="text-lg font-bold text-slate-950">ตัวอย่างค่าใช้จ่าย</h3>
+                <p className="mt-3 leading-7 text-slate-700">
+                  รับเงินต้น 2,000 บาท ระยะเวลา 90 วัน ดอกเบี้ย 2% ต่อเดือน เป็นเวลา 3 เดือน
+                </p>
+                <div className="mt-5 space-y-2 border-t border-slate-200 pt-4 text-base text-slate-700">
+                  <p className="flex justify-between gap-4"><span>เงินต้น</span><strong>2,000 บาท</strong></p>
+                  <p className="flex justify-between gap-4"><span>ดอกเบี้ยรวม</span><strong>120 บาท</strong></p>
+                  <p className="flex justify-between gap-4 text-lg text-slate-950"><span>ยอดไถ่ถอนรวม</span><strong>2,120 บาท</strong></p>
+                </div>
+                <p className="mt-4 text-sm leading-6 text-slate-600">
+                  กรณีระยะเวลาไม่ครบเดือน: ไม่เกิน 15 วันคิดครึ่งเดือน และเกิน 15 วันคิดหนึ่งเดือน
+                </p>
+              </div>
+            </div>
+            <div className="border-t border-amber-200 bg-white px-6 py-5 text-sm leading-6 text-slate-700 sm:px-8">
+              <strong className="text-slate-950">สถานที่ประกอบการ:</strong>{' '}
+              1/8 หมู่ 13 ตำบลบางพึ่ง อำเภอพระประแดง จังหวัดสมุทรปราการ 10130
+            </div>
+          </section>
+
           <div className="text-center">
             <p className="font-semibold text-amber-700">ขั้นตอนชัดเจน</p>
             <h2 className="mt-2 text-3xl font-bold">ประเมินก่อน ตัดสินใจเมื่อทราบเงื่อนไขครบ</h2>
@@ -117,7 +172,7 @@ export function AdPawnLandingPage() {
               <h2 className="flex items-center gap-2 text-lg font-bold"><ShieldCheck className="text-amber-700" /> ข้อมูลสำคัญก่อนทำรายการ</h2>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
                 <li>• วงเงินจริงพิจารณาจากประเภท รุ่น สภาพ อุปกรณ์ และผลการตรวจสินค้า</li>
-                <li>• ลูกค้าจะได้รับแจ้งเงื่อนไข ระยะเวลา และค่าใช้จ่ายก่อนลงนาม</li>
+                <li>• ระยะเวลา อัตราดอกเบี้ย และตัวอย่างค่าใช้จ่ายแสดงไว้บนหน้านี้ก่อนส่งคำขอ</li>
                 <li>• สิทธิ์และหน้าที่ของแต่ละฝ่ายเป็นไปตามสัญญาและกฎหมายที่เกี่ยวข้อง</li>
                 <li>• ข้อมูลที่ส่งใช้เพื่อประเมินสินค้าและติดต่อกลับเกี่ยวกับคำขอนี้เท่านั้น</li>
               </ul>
@@ -134,6 +189,7 @@ export function AdPawnLandingPage() {
 
           <div className="mt-10 border-t border-slate-200 pt-6 text-center text-xs leading-6 text-slate-500">
             <p>เลขที่ใบอนุญาตประกอบกิจการรับจำนำ 0001144 · เลขที่ใบทะเบียนพาณิชย์ 1100369000051</p>
+            <p>1/8 หมู่ 13 ตำบลบางพึ่ง อำเภอพระประแดง จังหวัดสมุทรปราการ 10130</p>
             <p>© 2026 AURUM TRUST</p>
           </div>
         </div>
