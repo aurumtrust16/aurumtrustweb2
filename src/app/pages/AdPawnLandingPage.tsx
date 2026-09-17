@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { BadgeCheck, CheckCircle2, Clock3, MapPin, MessageCircle, ShieldCheck } from 'lucide-react';
 
 const FACEBOOK_INBOX_URL = 'https://m.me/61589267054204';
-const LINE_URL = 'https://lin.ee/RF3sNle';
+const LINE_URL = 'https://lin.ee/Vez58Lu';
 
 const services = [
   'โทรศัพท์มือถือและแท็บเล็ต',
