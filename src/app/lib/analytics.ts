@@ -2,6 +2,7 @@ const DEFAULT_GOOGLE_TAG_ID = 'AW-18173464456';
 const DEFAULT_GOOGLE_ADS_LINE_SEND_TO = 'AW-18173464456/lrZACJj7j_EcEIif5NlD';
 const DEFAULT_GOOGLE_ADS_FACEBOOK_SEND_TO = 'AW-18173464456/wBQWCIHW__IcEIif5NlD';
 const DEFAULT_GOOGLE_ADS_PHONE_SEND_TO = 'AW-18173464456/7OAGCJv7j_EcEIif5NlD';
+const DEFAULT_LINE_TAG_ID = 'af3f43d8-1b12-484a-a211-358f79c4c3ff';
 
 const ATTRIBUTION_KEYS = [
   'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
@@ -20,6 +21,8 @@ declare global {
   interface Window {
     dataLayer: unknown[];
     gtag: (...args: unknown[]) => void;
+    _ltq: unknown[][];
+    _lt: (...args: unknown[]) => void;
   }
 }
 
@@ -109,6 +112,7 @@ function cleanParams(params: AnalyticsParams) {
 export function initializeAnalytics() {
   const googleTagId = import.meta.env.VITE_GOOGLE_TAG_ID?.trim() || DEFAULT_GOOGLE_TAG_ID;
   const ga4MeasurementId = import.meta.env.VITE_GA4_MEASUREMENT_ID?.trim();
+  const lineTagId = import.meta.env.VITE_LINE_TAG_ID?.trim() || DEFAULT_LINE_TAG_ID;
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag(..._args: unknown[]) {
     window.dataLayer.push(arguments);
@@ -129,6 +133,20 @@ export function initializeAnalytics() {
   if (ga4MeasurementId && ga4MeasurementId !== googleTagId) {
     window.gtag('config', ga4MeasurementId, { send_page_view: false });
   }
+
+  window._ltq = window._ltq || [];
+  window._lt = window._lt || function lineTag(...args: unknown[]) {
+    window._ltq.push(args);
+  };
+  if (!document.querySelector(`script[data-aurum-line-tag="${lineTagId}"]`)) {
+    const lineScript = document.createElement('script');
+    lineScript.async = true;
+    lineScript.src = 'https://d.line-scdn.net/n/line_tag/public/release/v1/lt.js';
+    lineScript.dataset.aurumLineTag = lineTagId;
+    document.head.appendChild(lineScript);
+    window._lt('init', { customerType: 'account', tagId: lineTagId });
+  }
+  window._lt('send', 'pv', [lineTagId]);
 }
 
 export function trackEvent(name: string, params: AnalyticsParams = {}) {
@@ -167,5 +185,10 @@ export function trackContactClick(
       currency: 'THB',
       event_callback_timeout: 2000,
     });
+  }
+
+  if (channel === 'line') {
+    const lineTagId = import.meta.env.VITE_LINE_TAG_ID?.trim() || DEFAULT_LINE_TAG_ID;
+    window._lt?.('send', 'cv', { type: 'Conversion' }, [lineTagId]);
   }
 }
